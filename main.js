@@ -8,6 +8,7 @@ pngQuality: 90
 });
 camera = document.getElementById("camera");
 Webcam.attach('#camera');
+
 function take_snapshot(){
 Webcam.snap(function(data_uri){
     document.getElementById("result").innerHTML = 
@@ -30,17 +31,17 @@ function check(){
     img = document.getElementById("captured_image");
     classifier.classify(img, gotResult);
    }
+
    function gotResult(error, results){
    if (error){
    console.log(error);
    }
    else{
    console.log(results);
-   document.getElementById("resultName").innerHTML = results[0].label;
-   document.getElementById("resultName2").innerHTML = results[1].confidence;
-   previsão1 = results[0].label;
-   previsão2 = results[1].label;
-   speak();if (results[0].label == "mascara"){
+   document.getElementById("status").innerHTML = results[0].label;
+   prediction_1 = results[0].label;
+
+   if (results[0].label == "mascara"){
     document.getElementById("updateMascara").innerHTML = "&#128567;"
     }
     if (results[0].label == "sem mascara"){
